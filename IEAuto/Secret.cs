@@ -10,13 +10,9 @@ namespace IEAuto
 {
     class Secret
     {
-        SHA256 sha;
-        public Secret()
-        {
-            sha = new SHA256Managed();
-        }
+        static SHA256 sha = new SHA256Managed();
 
-        public string SHA256Hash(string data)
+        public static string SHA256Hash(string data)
         {
             byte[] hash = sha.ComputeHash(Encoding.ASCII.GetBytes(data));
             StringBuilder stringBuilder = new StringBuilder();
@@ -77,7 +73,7 @@ namespace IEAuto
             aes.IV = vector.GetBytes(16);  
 
             ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
-
+            
             using (MemoryStream ms = new MemoryStream()) 
             {
                 

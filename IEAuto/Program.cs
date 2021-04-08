@@ -17,7 +17,17 @@ namespace IEAuto
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            try
+            {
+                Application.Run(new LoginForm(Application.StartupPath));
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                MessageBox.Show("프로그램을 종료합니다.");
+                Application.Exit();
+            }
         }
     }
 }
